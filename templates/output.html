@@ -2,32 +2,48 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <title>Enyo Cipher</title>
+    <title>Blockchain Signature</title>
+    <link href="https://i.imgur.com/BShnbTi.png" rel="icon">
+    <meta name="description" content="Attribute Based Signature Generation for Blockchain Implementation.">
+    <meta name="keywords" content="owasp, owaspvit, apratim shukla, apratimshukla6, apratim, earthing, chennai, vit chennai encryption, vit chennai cipher, encryption algorithm, fast cipher, enyo python, python cipher">
+    <meta name="author" content="Apratim Shukla and Swapnil Mishra">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-  <style>p{color: White;;
-  }</style>
+  <style>
+      p { 
+          color: White;
+      }
+    </style>
 
 </head>
 <body>
   <!-- partial:index.partial.html -->
-  <div class="login-box">
-    <h2>Login</h2>
+  <div class="login-box" style="width: 900px;">
+    <h2>Generated Information</h2>
     <form>
 
+      <label style="color:#03e9f4">Signature</label>
       <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Signed Value</label>
+        <input type="text" value="{{ encoded_signature }}" readonly>
+      </div>
+
+      <label style="color:#03e9f4">Read Ciphered Key</label>
+      <div class="user-box">
+        <input type="text" value="{{ read_ciphered_key }}" readonly>
+      </div>
+        
+      <label style="color:#03e9f4">Write Ciphered Key</label>
+      <div class="user-box">
+        <input type="text" value="{{ write_ciphered_key }}" readonly>
+      </div>
+        
+      <label style="color:#03e9f4">Delete Ciphered Key</label>
+      <div class="user-box">
+        <input type="text" value="{{ delete_ciphered_key }}" readonly>
       </div>
 
 
-      <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Cipher Text U</label>
-      </div>
-
-
-      <a href="#" type="button" onclick="window.location.href='{{ url_for( 'index') }}';">
+      <a href="" type="button" onclick="window.location.href='{{ url_for('index') }}';">
         <span></span>
         <span></span>
         <span></span>
