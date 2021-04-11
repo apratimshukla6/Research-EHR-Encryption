@@ -18,28 +18,28 @@ def GenerateSign(string, secret, read_key=None, write_key=None, delete_key=None,
     encrypted_read = None
     encrypted_write = None
     encrypted_delete = None
-    concat = []
+    concat = {}
     
     if(read):
         encrypted_read = bytes(read_key, 'utf-8')
         cipher_read = AES.new(encrypted_read, AES.MODE_EAX)
         nonce_read = cipher_read.nonce
         ciphertext_read, tag_read = cipher_read.encrypt_and_digest(bytes(secret, 'utf-8'))
-        concat.append(str(base64.b64encode(ciphertext_read),'utf-8'))
+        concat["read"] = str(base64.b64encode(ciphertext_read),'utf-8')
         
     if(write):
         encrypted_write = bytes(write_key, 'utf-8')
         cipher_write = AES.new(encrypted_write, AES.MODE_EAX)
         nonce_write = cipher_write.nonce
         ciphertext_write, tag_write = cipher_write.encrypt_and_digest(bytes(secret, 'utf-8'))
-        concat.append(str(base64.b64encode(ciphertext_write),'utf-8'))
+        concat["write"] = str(base64.b64encode(ciphertext_write),'utf-8')
     
     if(delete):
         encrypted_delete = bytes(delete_key, 'utf-8')
         cipher_delete = AES.new(encrypted_delete, AES.MODE_EAX)
         nonce_delete = cipher_delete.nonce
         ciphertext_delete, tag_delete = cipher_delete.encrypt_and_digest(bytes(secret, 'utf-8'))
-        concat.append(str(base64.b64encode(ciphertext_delete),'utf-8')) 
+        concat["delete"] = str(base64.b64encode(ciphertext_delete),'utf-8')
         
     hash_value = bytes(str(concat), 'utf-8')
         
@@ -85,13 +85,13 @@ def index():
         delete_ciphered_key = ""
         
         if(read_key!=''):
-            read_ciphered_key = concat[0]
+            read_ciphered_key = concat["read"]
         
         if(write_key!=''):
-            write_ciphered_key = concat[1]
+            write_ciphered_key = concat["write"]
         
         if(delete_key!=''):
-            delete_ciphered_key = concat[2]
+            delete_ciphered_key = concat["delete"]
         
         return render_template('output.html', encoded_signature = encoded_signature, read_ciphered_key = read_ciphered_key, write_ciphered_key = write_ciphered_key, delete_ciphered_key = delete_ciphered_key)
     
