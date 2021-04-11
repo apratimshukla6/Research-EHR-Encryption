@@ -78,7 +78,7 @@ def index():
         if(delete_key!=''):
             delete = True
         
-        encoded_signature, concat = GenerateSign("abc123", "Sixteen byte key", read_key=read_key, write_key=write_key, delete_key=delete_key, read=read, write=write, delete=delete)
+        encoded_signature, concat = GenerateSign(text, key, read_key=read_key, write_key=write_key, delete_key=delete_key, read=read, write=write, delete=delete)
         
         read_ciphered_key = ""
         write_ciphered_key = ""
